@@ -1,0 +1,95 @@
+#!/usr/local/bin/ruby -w
+puts "Hello World!";
+puts `dir`
+puts self
+# p008mymethods.rb  
+# A method returns the value of the last line  
+# Methods that act as queries are often named with a trailing ?  
+# Methods that are "dangerous," or modify the receiver, might be named  
+# with a trailing ! (Bang methods)  
+# A simple method  
+def hello  
+  'Hello'  
+end  
+#use the method  
+puts hello  
+  
+# Method with an argument - 1  
+def hello1(name)  
+  'Hello ' + name  
+end  
+puts (hello1('satish'))  
+  
+# Method with an argument - 2  
+def hello2 name2  
+  'Hello ' + name2  
+end  
+puts (hello2('talim')) 
+
+# p009mymethods1.rb  
+# interpolation refers to the process of inserting the result of an  
+# expression into a string literal  
+# the interpolation operator #{...} gets calculated separately  
+def mtd(arg1="Dibya", arg2="Shashank", arg3="Shashank")  
+  "#{arg1}, #{arg2}, #{arg3}."  
+end  
+puts mtd  
+puts mtd("ruby")  
+
+# p010aliasmtd.rb  
+# alias new_name old_name  
+# When a method is aliased, the new name refers  
+# to a copy of the original method's body  
+  
+def oldmtd  
+  "old method"  
+end  
+alias newmtd oldmtd  
+def oldmtd  
+  "old improved method"  
+end  
+puts oldmtd  
+puts newmtd  
+
+# p011vararg.rb  
+# variable number of parameters example  
+# The asterisk is actually taking all arguments you send to the method  
+# and assigning them to an array named my_string as shown below  
+# The do end is a Ruby block which we talk in length later  
+def foo(*my_string)  
+  my_string.inspect  
+end  
+puts foo('hello','world')  
+puts foo()  
+
+# p012mtdstack.rb  
+# Sequence in which the parameters are put on to the stack is left to right  
+def mtd2(a=99, b=a+1)  
+  [a,b]  
+end  
+puts mtd2 # displays 99, 100  
+puts mtd2 100,100
+
+#Are the parameters passed by value or reference? Observe the following example:
+
+=begin
+def downer(string)  
+  string.downcase  
+end  
+a = "HELLO"  
+puts downer(a)      # -> "hello"  
+puts a         # -> "HELLO"  
+=end
+
+def downer(string)  
+  string.downcase!  
+end  
+a = "HELLO"  
+puts downer(a)      # -> "hello"  
+puts a         # -> "hello"  
+
+=begin
+You'll find a number of pairs of methods, one with the bang and one without. Those without the bang perform an action and return a freshly minted object, reflecting the results of the action (capitalizing a string, sorting an array, and so on). The bang versions of the same methods perform the action, but they do so in place: Instead of creating a new object, they transform the original object.
+=end
+b=0
+puts b.nonzero?.to_s

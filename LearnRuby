@@ -1,95 +1,285 @@
-#!/usr/local/bin/ruby -w
-puts "Hello World!";
-puts `dir`
-puts self
-# p008mymethods.rb  
-# A method returns the value of the last line  
-# Methods that act as queries are often named with a trailing ?  
-# Methods that are "dangerous," or modify the receiver, might be named  
-# with a trailing ! (Bang methods)  
-# A simple method  
-def hello  
-  'Hello'  
-end  
-#use the method  
-puts hello  
+# p001hello.rb 
+puts \
+'Hello'
+
+# p002rubynumbers.rb
+=begin
+  Ruby Numbers
+  Usual operations:
+  + addition
+  - substraction
+  * multiplication
+  / division
+=end
+
+puts 1 + 22
+puts 2 * 3
+puts 1_000 + 2_000
+# Integer division
+# When you do arithmatic with integers, you'll get integer answers
+puts 3 / 2
+puts 10 - 11
+puts 1.5 / 2.6
+
+puts nil || 2008 
+puts false || 2008 
+puts "ruby" || 2008
+
+@variable = @variable || "default value"
+puts @variable
+
+def g *args # The splat here says accept 1 or more arguments, in the form of an Array 
+  args      # This returns an array 
+end 
+ 
+def f arg 
+  arg 
+end 
+ 
+x,y,z = [true, 'two', false] # parrallel assignment lets us do this 
+ 
+if a = f(x) and b = f(y) and c = f(z) then 
+  d = g(a,b,c) # An array is returned, and stored in variable d 
+end 
+ 
+p d # using p to puts and inspect d
+
+# p003rubystrings.rb 
+=begin 
+  Ruby Strings 
+  In Ruby, strings are mutable 
+=end 
+ 
+puts "Hello World" 
+# Can use " or ' for Strings, but ' is more efficient 
+puts 'Hello World' 
+# String concatenation 
+puts 'I like' + ' Ruby' 
+# Escape sequence 
+puts 'It\'s my Ruby' 
+# New here, displays the string three times 
+puts 'Hello' * 3 
+# Defining a constant 
+# More on Constants later, here 
+# http://rubylearning.com/satishtalim/ruby_names.html 
+PI = 3.1416 
+puts PI 
+puts `dir` #The command output string is sent to the operating system as a command to be executed
+puts system("tar xzf test.tgz")
+
+ # p004stringusage.rb  
+# Defining a constant 
+PI = 3.1416 
+puts PI 
+# Defining a local variable 
+my_string = 'I love my city, Pune' 
+puts my_string 
+=begin 
+  Conversions 
+  .to_i, .to_f, .to_s 
+=end 
+var1 = 5; 
+var2 = '2' 
+puts var1 + var2.to_i 
+# << appending to a string 
+a = 'hello ' 
+a<<'world.
+I love this world...' 
+puts a 
+a = <<END_STR
+This is the string 
+And a second line 
+END_STR 
+puts a
+
+# p005methods.rb 
+# gets and chomp 
+puts "In which city do you stay?" 
+STDOUT.flush 
+city = gets #.chomp 
+puts "The city is " + city
+
+# p007dt.rb  
+# Ruby is dynamic 
+x = 7           # integer 
+x = "house"  # string 
+x = 7.5        # real 
+ 
+# In Ruby, everything you manipulate is an object 
+'I love Ruby'.length 
+puts Float::DIG
+puts Float::MAX
+
+rice_on_square = 1 
+64.times do |square| 
+  puts "On square #{square + 1} are #{rice_on_square} grain(s)" 
+  rice_on_square *= 2 
+end
+
+s = 'hello' 
+puts s.class  # String
+
+puts 'I am in class = ' + self.class.to_s 
+puts 'I am an object = ' + self.to_s 
+print 'The object methods are = ' 
+puts self.private_methods.sort 
+5.times { puts "Mice!\n" } # more on blocks later 
+"Elephants Like Peanuts".length  
+
+
+# p008mymethods.rb
+# A method returns the value of the last line
+# Methods that act as queries are often named with a trailing ?
+# Methods that are "dangerous," or modify the receiver, might be named
+# with a trailing ! (Bang methods)
+# A simple method
+def hello
+  'Hello'
+end
+#use the method
+puts hello
   
-# Method with an argument - 1  
-def hello1(name)  
-  'Hello ' + name  
-end  
-puts (hello1('satish'))  
+# Method with an argument - 1
+def hello1(name)
+  'Hello ' + name
+end
+puts (hello1('satish'))
   
-# Method with an argument - 2  
-def hello2 name2  
-  'Hello ' + name2  
-end  
-puts (hello2('talim')) 
+# Method with an argument - 2
+def hello2 name2
+  'Hello ' + name2
+end
+puts (hello2('talim'))
 
-# p009mymethods1.rb  
-# interpolation refers to the process of inserting the result of an  
-# expression into a string literal  
-# the interpolation operator #{...} gets calculated separately  
-def mtd(arg1="Dibya", arg2="Shashank", arg3="Shashank")  
-  "#{arg1}, #{arg2}, #{arg3}."  
-end  
-puts mtd  
-puts mtd("ruby")  
+# p009mymethods1.rb
+# interpolation refers to the process of inserting the result of an
+# expression into a string literal
+# the interpolation operator #{...} gets calculated separately
+def mtd(arg1="Dibya", arg2="Shashank", arg3="Shashank")
+  "#{arg1}, #{arg2}, #{arg3}."
+end
+puts mtd
+puts mtd("ruby")
 
-# p010aliasmtd.rb  
-# alias new_name old_name  
-# When a method is aliased, the new name refers  
-# to a copy of the original method's body  
+# p010aliasmtd.rb
+# alias new_name old_name
+# When a method is aliased, the new name refers
+# to a copy of the original method's body
   
-def oldmtd  
-  "old method"  
-end  
-alias newmtd oldmtd  
-def oldmtd  
-  "old improved method"  
-end  
-puts oldmtd  
-puts newmtd  
+def oldmtd
+  "old method"
+end
+alias newmtd oldmtd
+def oldmtd
+  "old improved method"
+end
+puts oldmtd
+puts newmtd
 
-# p011vararg.rb  
-# variable number of parameters example  
-# The asterisk is actually taking all arguments you send to the method  
-# and assigning them to an array named my_string as shown below  
-# The do end is a Ruby block which we talk in length later  
-def foo(*my_string)  
-  my_string.inspect  
-end  
-puts foo('hello','world')  
-puts foo()  
+# p011vararg.rb
+# variable number of parameters example
+# The asterisk is actually taking all arguments you send to the method
+# and assigning them to an array named my_string as shown below
+# The do end is a Ruby block which we talk in length later
+def foo(*my_string)
+  my_string.inspect
+end
+puts foo('hello','world')
+puts foo()
 
-# p012mtdstack.rb  
-# Sequence in which the parameters are put on to the stack is left to right  
-def mtd2(a=99, b=a+1)  
-  [a,b]  
-end  
-puts mtd2 # displays 99, 100  
+# p012mtdstack.rb
+# Sequence in which the parameters are put on to the stack is left to right
+def mtd2(a=99, b=a+1)
+  [a,b]
+end
+puts mtd2 # displays 99, 100
 puts mtd2 100,100
 
 #Are the parameters passed by value or reference? Observe the following example:
 
 =begin
-def downer(string)  
-  string.downcase  
-end  
-a = "HELLO"  
-puts downer(a)      # -> "hello"  
-puts a         # -> "HELLO"  
+def downer(string)
+  string.downcase
+end
+a = "HELLO"
+puts downer(a) # -> "hello"
+puts a # -> "HELLO"
 =end
 
-def downer(string)  
-  string.downcase!  
-end  
-a = "HELLO"  
-puts downer(a)      # -> "hello"  
-puts a         # -> "hello"  
+def downer(string)
+  string.downcase!
+end
+a = "HELLO"
+puts downer(a) # -> "hello"
+puts a # -> "hello"
 
 =begin
 You'll find a number of pairs of methods, one with the bang and one without. Those without the bang perform an action and return a freshly minted object, reflecting the results of the action (capitalizing a string, sorting an array, and so on). The bang versions of the same methods perform the action, but they do so in place: Instead of creating a new object, they transform the original object.
 =end
 b=0
 puts b.nonzero?.to_s
+
+# p013expint.rb  
+def say_goodnight(name)  
+  result = "Good night, #{name}"  
+  return result  
+end  
+puts say_goodnight('Satish')  
+  
+# modified program  
+def say_goodnight2(name)  
+  "Good night, #{name}"  
+end  
+puts say_goodnight2('Talim')  
+
+=begin
+It is to be noted that every time a string literal is used in an assignment or as a parameter, a new String object is created.
+=end
+
+puts 'String.methods.sort'
+puts String.methods.sort
+puts "\n"
+
+puts 'String.instance_methods.sort'
+puts String.instance_methods.sort
+puts "\n"
+
+puts 'String.instance_methods(false).sort'
+puts String.instance_methods(false).sort
+puts "\n"
+
+# p013strcmp.rb  
+# String#eql?, tests two strings for identical content.  
+# It returns the same result as ==  
+# String#equal?, tests whether two strings are the same object  
+s1 = 'Jonathan'  
+s2 = 'Jonathan'  
+s3 = s1  
+if s1 == s2  
+  puts 'Both Strings have identical content'  
+else  
+  puts 'Both Strings do not have identical content'  
+end  
+if s1.eql?(s2)  
+  puts 'Both Strings have identical content'  
+else  
+  puts 'Both Strings do not have identical content'  
+end  
+if s1.equal?(s2)  
+  puts 'Two Strings are identical objects'  
+else  
+  puts 'Two Strings are not identical objects'  
+end  
+if s1.equal?(s3)  
+  puts 'Two Strings are identical objects'  
+else  
+  puts 'Two Strings are not identical objects'  
+end 
+
+names1 = [ 'ann', 'richard', 'william', 'susan', 'pat' ]  
+puts names1[0] # ann  
+puts names1[3] # susan  
+# this is the same:  
+names2 = %w{  ann richard william susan pat }  
+puts names2[0] # ann  
+puts names2[3] # susan

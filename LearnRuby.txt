@@ -283,3 +283,17 @@ puts names1[3] # susan
 names2 = %w{  ann richard william susan pat }  
 puts names2[0] # ann  
 puts names2[3] # susan
+
+#differences between string + and <<
+a = 'abc'
+b = a
+a = a+'def'
+puts a
+puts b
+
+c = 'abc'
+d = c
+d<<'def'
+puts c
+puts d
+
